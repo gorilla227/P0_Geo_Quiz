@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="P0_Geo_Quiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,73 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaP-nz-BGQ">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76Z-Hh-5Az">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="539"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-3Q-4jQ">
+                                                <rect key="frame" x="10" y="10" width="540" height="110"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGx-SM-yRy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="540" height="30"/>
+                                                        <connections>
+                                                            <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hky-T9-VnN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDL-Uz-AdP">
+                                                        <rect key="frame" x="0.0" y="40" width="540" height="30"/>
+                                                        <connections>
+                                                            <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZsB-Mc-khd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUp-ua-yzH">
+                                                        <rect key="frame" x="0.0" y="80" width="540" height="30"/>
+                                                        <connections>
+                                                            <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OMx-Mb-Ooa"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="QhD-3Q-4jQ" secondAttribute="trailing" constant="10" id="Fsc-GY-LNq"/>
+                                            <constraint firstItem="QhD-3Q-4jQ" firstAttribute="leading" secondItem="76Z-Hh-5Az" secondAttribute="leading" constant="10" id="jqw-WG-ztG"/>
+                                            <constraint firstItem="QhD-3Q-4jQ" firstAttribute="top" secondItem="76Z-Hh-5Az" secondAttribute="top" constant="10" id="ptq-yX-qkN"/>
+                                            <constraint firstAttribute="bottom" secondItem="QhD-3Q-4jQ" secondAttribute="bottom" constant="10" id="wnQ-E2-1mU"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GY-xX-WFb">
+                                        <rect key="frame" x="0.0" y="549" width="560" height="32"/>
+                                        <state key="normal" title="Listen Audio"/>
+                                        <connections>
+                                            <action selector="listenButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rEx-fA-hY4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gaP-nz-BGQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BAN-pc-hlP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gaP-nz-BGQ" secondAttribute="trailing" id="gzf-K8-2Pq"/>
+                            <constraint firstItem="gaP-nz-BGQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="heW-1i-Yn5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gaP-nz-BGQ" secondAttribute="bottom" id="mKW-Hz-ol9"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answerButton1" destination="XGx-SM-yRy" id="Bsj-4H-ZoT"/>
+                        <outlet property="answerButton2" destination="bDL-Uz-AdP" id="Ofl-Ao-x6K"/>
+                        <outlet property="answerButton3" destination="IUp-ua-yzH" id="omv-rE-LpG"/>
+                        <outlet property="listenButton" destination="8GY-xX-WFb" id="1ZE-B5-o7i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="885" y="657"/>
         </scene>
     </scenes>
 </document>
