@@ -18,28 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaP-nz-BGQ">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gaP-nz-BGQ">
                                 <rect key="frame" x="20" y="20" width="560" height="580"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76Z-Hh-5Az">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="539"/>
+                                    <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76Z-Hh-5Az">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="550"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-3Q-4jQ">
                                                 <rect key="frame" x="10" y="10" width="540" height="110"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGx-SM-yRy">
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGx-SM-yRy">
                                                         <rect key="frame" x="0.0" y="0.0" width="540" height="30"/>
                                                         <connections>
                                                             <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hky-T9-VnN"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDL-Uz-AdP">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDL-Uz-AdP">
                                                         <rect key="frame" x="0.0" y="40" width="540" height="30"/>
                                                         <connections>
                                                             <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZsB-Mc-khd"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUp-ua-yzH">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUp-ua-yzH">
                                                         <rect key="frame" x="0.0" y="80" width="540" height="30"/>
                                                         <connections>
                                                             <action selector="answerButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OMx-Mb-Ooa"/>
@@ -57,8 +57,8 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GY-xX-WFb">
-                                        <rect key="frame" x="0.0" y="549" width="560" height="32"/>
-                                        <state key="normal" title="Listen Audio"/>
+                                        <rect key="frame" x="0.0" y="550" width="560" height="30"/>
+                                        <state key="normal" title="Start Quiz"/>
                                         <connections>
                                             <action selector="listenButtonOnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rEx-fA-hY4"/>
                                         </connections>
@@ -78,6 +78,7 @@
                         <outlet property="answerButton1" destination="XGx-SM-yRy" id="Bsj-4H-ZoT"/>
                         <outlet property="answerButton2" destination="bDL-Uz-AdP" id="Ofl-Ao-x6K"/>
                         <outlet property="answerButton3" destination="IUp-ua-yzH" id="omv-rE-LpG"/>
+                        <outlet property="answerButtonView" destination="76Z-Hh-5Az" id="a8M-Dk-f9d"/>
                         <outlet property="listenButton" destination="8GY-xX-WFb" id="1ZE-B5-o7i"/>
                     </connections>
                 </viewController>

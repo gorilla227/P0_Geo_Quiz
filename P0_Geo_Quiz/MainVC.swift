@@ -7,23 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainVC: UIViewController {
     @IBOutlet weak var answerButton1: UIButton!
     @IBOutlet weak var answerButton2: UIButton!
     @IBOutlet weak var answerButton3: UIButton!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var answerButtonView: UIView!
     
     var countrySet = [Country]()
     var answerTag = [Int]()
     var answerButtonSet = [UIButton]()
+    var state: States = .Hold
+    let speechSynth = AVSpeechSynthesizer()
+    
+    enum States {
+        case Hold, Ready, Playing, PlayAgain
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupCountries()
-        prepareQuiz()
     }
 
     
@@ -64,6 +71,7 @@ class MainVC: UIViewController {
     
     func prepareQuiz() {
         answerTag = [Int]()
+        answerButtonView.alpha = 1.0
         listenButton.setTitle("Listen Audio", forState: .Normal)
         
         // MARK: 1. Select Random Answer
@@ -89,6 +97,12 @@ class MainVC: UIViewController {
         default:
             break
         }
+        print("Correct Button: \(randomTag)")
+        
+        answerButton1.enabled = true
+        answerButton2.enabled = true
+        answerButton3.enabled = true
+        
         guard answerButton != nil else {
             return
         }
@@ -108,24 +122,37 @@ class MainVC: UIViewController {
             button.setBackgroundImage(UIImage(named: country.flagImageFile), forState: .Normal)
         }
         
+        // MARK: 4. Set State
+        state = .Ready
     }
     
-//    func cleanQuiz() {
-//        answerButton1.setTitle(nil, forState: .Normal)
-//        answerButton1.setBackgroundImage(nil, forState: .Normal)
-//        answerButton2.setTitle(nil, forState: .Normal)
-//        answerButton2.setBackgroundImage(nil, forState: .Normal)
-//        answerButton3.setTitle(nil, forState: .Normal)
-//        answerButton3.setBackgroundImage(nil, forState: .Normal)
-//        
-//        listenButton.setTitle("Listen Audio", forState: .Normal)
-//    }
+    func clearQuiz() {
+        answerButtonSet = [answerButton1, answerButton2, answerButton3]
+        for answerButton in answerButtonSet {
+            answerButton.setBackgroundImage(nil, forState: .Normal)
+            answerButton.setTitle(nil, forState: .Normal)
+            answerButton.enabled = false
+        }
+        listenButton.setTitle("Start Quiz", forState: .Normal)
+        answerButtonView.alpha = 0.0
+        
+        state = .Hold
+    }
     
     // MARK: - IBActions
     @IBAction func listenButtonOnClicked(sender: AnyObject) {
-        // TODO: Play Sound
-        
-        
+        switch state {
+        case .Hold:
+            prepareQuiz()
+        case .Ready:
+            // TODO: Play Sound
+            playSound()
+        case .Playing:
+            // TODO: Stop Playing Sound
+            stopPlayingSound()
+        case .PlayAgain:
+            playSound()
+        }
     }
     
     @IBAction func answerButtonOnClicked(sender: AnyObject) {
@@ -133,7 +160,7 @@ class MainVC: UIViewController {
         
         let alertView = UIAlertController(title: "", message: "", preferredStyle: .Alert)
         let alertAction = UIAlertAction(title: "Play Again", style: .Cancel) { (action) in
-            self.prepareQuiz()
+            self.clearQuiz()
         }
         alertView.addAction(alertAction)
         if playerSelection == answerTag.first {
@@ -146,5 +173,34 @@ class MainVC: UIViewController {
             alertView.message = "You choosed the WRONG answer!"
         }
         presentViewController(alertView, animated: true, completion: nil)
+    }
+}
+
+extension MainVC: AVSpeechSynthesizerDelegate {
+    // MARK: - Play Sound Functions
+    
+    func playSound() {
+        let country = countrySet[answerTag.first!]
+        
+        speechSynth.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
+        let speechUtterance: AVSpeechUtterance = AVSpeechUtterance(string: country.speechText)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: country.code)
+        speechSynth.delegate = self
+        speechSynth.speakUtterance(speechUtterance)
+        
+        listenButton.setTitle("Stop", forState: .Normal)
+        state = .Playing
+    }
+    
+    func stopPlayingSound() {
+        speechSynth.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
+        
+        listenButton.setTitle("Play Again", forState: .Normal)
+        state = .PlayAgain
+    }
+    
+    // MARK: - AVSpeechSynthesizerDelegate
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {
+        stopPlayingSound()
     }
 }
