@@ -160,7 +160,7 @@ class MainVC: UIViewController {
         
         let alertView = UIAlertController(title: "", message: "", preferredStyle: .Alert)
         let alertAction = UIAlertAction(title: "Play Again", style: .Cancel) { (action) in
-            self.clearQuiz()
+            self.prepareQuiz()
         }
         alertView.addAction(alertAction)
         if playerSelection == answerTag.first {
